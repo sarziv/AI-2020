@@ -1,6 +1,3 @@
-import math
-
-
 ## eil sk
 def kiekis(data):
     return len(data)
@@ -54,6 +51,7 @@ def vidurkis(data, kiekis):
 def kvantilis_mediana(data, kiekis):
     kvantilis = kiekis * 0.50
     return data[round(kvantilis)]
+
 
 ## stand nuokrypis
 def standartinis_nuokrypis():

@@ -39,33 +39,33 @@ def tolydinisTipas(name, data):
     sarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'min', 'max', 'kvantilis pirmas',
                'kvantilis trecias', 'mediana', 'vidurkis']
     result = []
-    result.append(name)
     kiekis = tolyginis.kiekis(data)
-    result.append(kiekis)
     truksta = tolyginis.truksta(TOTAL_LINES, kiekis)
-    result.append(truksta)
     kardinalumas = tolyginis.kardinalumas(data)
-    result.append(kardinalumas)
     minimalus = tolyginis.minimalus(data)
-    result.append(minimalus)
     maximalus = tolyginis.maximalus(data)
-    result.append(maximalus)
     sorted_list = sorted(data)
     pirmas = tolyginis.kvantilis_pirmas(sorted_list, kiekis)
-    result.append(pirmas)
     trecias = tolyginis.kvantilis_trecias(sorted_list, kiekis)
-    result.append(trecias)
     mediana = tolyginis.kvantilis_mediana(sorted_list, kiekis)
-    result.append(mediana)
     vidurkis = tolyginis.vidurkis(data, kiekis)
-    result.append(vidurkis)
-    print(sarasas)
-    print(result)
+    result.append([name, kiekis, truksta, kardinalumas, minimalus, maximalus, pirmas, trecias, mediana, vidurkis])
+    ##print(sarasas)
+    ##print(result[0])
+    return result[0]
 
 
 ## Kategorinio tipo reikšmėms
 def kategorijosTipas(name, data):
-    print()
+    sarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'Moda 1', 'Modos 1 daznis', 'Moda 1 %', 'Moda 2', 'Modos 2 daznis', 'Moda 2 %',]
+    result = []
+    kiekis = kategorinis.kiekis(data)
+    truksta = kategorinis.truksta(TOTAL_LINES, kiekis)
+    kardinalumas = kategorinis.kardinalumas(data)
+    moda1= kategorinis.moda1(data)
+    result.append([name,kiekis,truksta,kardinalumas,moda1])
 
+    ##print(sarasas)
+    ##print(result[0])
 
 generavimas(False)
