@@ -75,3 +75,4 @@ kategorinisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'min',
 tolyginisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'Moda 1', 'Modos 1 daznis', 'Moda 1 %',
                     'Moda 2', 'Modos 2 daznis', 'Moda 2 %', ]
 file.create(tolyginisSarasas, results[0], kategorinisSarasas, results[1])
+print("Completed")
