@@ -1,12 +1,15 @@
 import CVSFileHelper
 import Tol_calcs as tolyginis
 import Kat_calcs as kategorinis
+import WriteToFile as file
 
 TOTAL_LINES = 6367
 
 
 def generavimas(show):
     general_list = []
+    result_kat = []
+    result_tol = []
     tol_list = []
     kat_list = []
     for cols in range(13):
@@ -22,16 +25,17 @@ def generavimas(show):
     for tol_each in tol_list:
         tol_name = tol_each[:1]
         tol_data = tol_each[1:]
-        tolydinisTipas(tol_name[0], tol_data)
+        result_tol.append(tolydinisTipas(tol_name[0], tol_data))
     if (show == True):
         print(tol_each)
 
     for kat_each in kat_list:
         kat_name = kat_each[:1]
         kat_data = kat_each[1:]
-        kategorijosTipas(kat_name[0], kat_data)
+        result_kat.append(kategorijosTipas(kat_name[0], kat_data))
         if (show == True):
             print(kat_each)
+    return result_kat, result_tol
 
 
 ## Tolydinio tipo reikšmėms
@@ -62,13 +66,12 @@ def kategorijosTipas(name, data):
     moda2 = kategorinis.moda2(data)
     moda2_proc = kategorinis.moda_proc(moda2[1], TOTAL_LINES)
     result.append([name, kiekis, truksta, kardinalumas, moda1[0], moda1[1], moda1_proc, moda2[0], moda2[1], moda2_proc])
-    print(result[0])
+    return result[0]
 
 
-generavimas(False)
-
+results = generavimas(False)
 kategorinisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'min', 'max', 'kvantilis pirmas',
                       'kvantilis trecias', 'mediana', 'vidurkis']
-
 tolyginisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'Moda 1', 'Modos 1 daznis', 'Moda 1 %',
                     'Moda 2', 'Modos 2 daznis', 'Moda 2 %', ]
+file.create(tolyginisSarasas, results[0], kategorinisSarasas, results[1])
