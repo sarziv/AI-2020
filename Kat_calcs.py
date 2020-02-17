@@ -26,8 +26,7 @@ def moda1(data):
     largest = value[0]
     for (key, val) in dict.items():
         if val == largest:
-            print(key,largest)
-            return [key,largest]
+            return [key, largest]
 
 
 def moda2(data):
@@ -36,10 +35,9 @@ def moda2(data):
     secondLarge = value[1]
     for (key, val) in dict.items():
         if val == secondLarge:
-            return [key,secondLarge]
+            return [key, secondLarge]
 
 
-def moda_proc(moda2, total_lines):
-    proc_value = moda2 / total_lines
-    result = round(proc_value, 2) * 100 - 100
-    return round(abs(result))
+def moda_proc(moda, total_lines):
+    proc_value = moda / total_lines
+    return round(proc_value * 100)

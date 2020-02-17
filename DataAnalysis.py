@@ -36,8 +36,6 @@ def generavimas(show):
 
 ## Tolydinio tipo reikšmėms
 def tolydinisTipas(name, data):
-    sarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'min', 'max', 'kvantilis pirmas',
-               'kvantilis trecias', 'mediana', 'vidurkis']
     result = []
     kiekis = tolyginis.kiekis(data)
     truksta = tolyginis.truksta(TOTAL_LINES, kiekis)
@@ -50,22 +48,27 @@ def tolydinisTipas(name, data):
     mediana = tolyginis.kvantilis_mediana(sorted_list, kiekis)
     vidurkis = tolyginis.vidurkis(data, kiekis)
     result.append([name, kiekis, truksta, kardinalumas, minimalus, maximalus, pirmas, trecias, mediana, vidurkis])
-    ##print(sarasas)
-    ##print(result[0])
     return result[0]
 
 
 ## Kategorinio tipo reikšmėms
 def kategorijosTipas(name, data):
-    sarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'Moda 1', 'Modos 1 daznis', 'Moda 1 %', 'Moda 2', 'Modos 2 daznis', 'Moda 2 %',]
     result = []
     kiekis = kategorinis.kiekis(data)
     truksta = kategorinis.truksta(TOTAL_LINES, kiekis)
     kardinalumas = kategorinis.kardinalumas(data)
-    moda1= kategorinis.moda1(data)
-    result.append([name,kiekis,truksta,kardinalumas,moda1])
+    moda1 = kategorinis.moda1(data)
+    moda1_proc = kategorinis.moda_proc(moda1[1], TOTAL_LINES)
+    moda2 = kategorinis.moda2(data)
+    moda2_proc = kategorinis.moda_proc(moda2[1], TOTAL_LINES)
+    result.append([name, kiekis, truksta, kardinalumas, moda1[0], moda1[1], moda1_proc, moda2[0], moda2[1], moda2_proc])
+    print(result[0])
 
-    ##print(sarasas)
-    ##print(result[0])
 
 generavimas(False)
+
+kategorinisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'min', 'max', 'kvantilis pirmas',
+                      'kvantilis trecias', 'mediana', 'vidurkis']
+
+tolyginisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'Moda 1', 'Modos 1 daznis', 'Moda 1 %',
+                    'Moda 2', 'Modos 2 daznis', 'Moda 2 %', ]
