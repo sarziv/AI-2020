@@ -19,40 +19,52 @@ def kardinalumas(data):
 
 ## min
 def minimalus(data):
-    return min(data)
+    r = min(float(sub) for sub in data)
+    return numberHelper(r)
 
 
 ## max
 def maximalus(data):
-    return max(data)
+    r = max(float(sub) for sub in data)
+    return numberHelper(r)
 
 
 ## 1 kvantilis
 def kvantilis_pirmas(data, kiekis):
     kvantilis = kiekis * 0.25
-    return data[round(kvantilis)]
+    return numberHelper(data[round(kvantilis)])
 
 
 ## 3 kvantilis
 def kvantilis_trecias(data, kiekis):
     kvantilis = kiekis * 0.75
-    return data[round(kvantilis)]
+    return numberHelper(data[round(kvantilis)])
 
 
 ## vidurkis
 def vidurkis(data, kiekis):
-    results = list(map(int, data))
-    visaSuma = sum(results)
-    vid = visaSuma / kiekis
-    return round(vid, 2)
+    sum_num = 0.0
+    avg = 0
+    for t in data:
+        if float(t) > 0:
+            sum_num = sum_num + float(t)
+            avg = sum_num / kiekis
+    return round(avg, 2)
 
 
 ## mediana
 def kvantilis_mediana(data, kiekis):
     kvantilis = kiekis * 0.50
-    return data[round(kvantilis)]
+    return numberHelper(data[round(kvantilis)])
 
 
 ## stand nuokrypis
 def standartinis_nuokrypis():
     return
+
+
+def numberHelper(r):
+    if type(r) == int:
+        return r
+    else:
+        return round(float(r), 2)

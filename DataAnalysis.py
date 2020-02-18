@@ -2,9 +2,8 @@ import CVSFileHelper
 import Tol_calcs as tolyginis
 import Kat_calcs as kategorinis
 import WriteToFile as file
-
-TOTAL_LINES = 6367
-
+TOTAL_LINES = 758
+TOTAL_ARRTIBUTES = 20
 
 def generavimas(show):
     general_list = []
@@ -12,7 +11,7 @@ def generavimas(show):
     result_tol = []
     tol_list = []
     kat_list = []
-    for cols in range(13):
+    for cols in range(TOTAL_ARRTIBUTES):
         if cols > 0:  ##ignoring id line
             cvs = CVSFileHelper.getInformation(cols)
             general_list.append(cvs)
@@ -26,8 +25,8 @@ def generavimas(show):
         tol_name = tol_each[:1]
         tol_data = tol_each[1:]
         result_tol.append(tolydinisTipas(tol_name[0], tol_data))
-    if (show == True):
-        print(tol_each)
+        if (show == True):
+            print(tol_each)
 
     for kat_each in kat_list:
         kat_name = kat_each[:1]
@@ -46,12 +45,13 @@ def tolydinisTipas(name, data):
     kardinalumas = tolyginis.kardinalumas(data)
     minimalus = tolyginis.minimalus(data)
     maximalus = tolyginis.maximalus(data)
-    sorted_list = sorted(data)
+    sorted_list = sorted(data,key=float)
     pirmas = tolyginis.kvantilis_pirmas(sorted_list, kiekis)
     trecias = tolyginis.kvantilis_trecias(sorted_list, kiekis)
     mediana = tolyginis.kvantilis_mediana(sorted_list, kiekis)
     vidurkis = tolyginis.vidurkis(data, kiekis)
     result.append([name, kiekis, truksta, kardinalumas, minimalus, maximalus, pirmas, trecias, mediana, vidurkis])
+    ##print(result)
     return result[0]
 
 
@@ -66,8 +66,8 @@ def kategorijosTipas(name, data):
     moda2 = kategorinis.moda2(data)
     moda2_proc = kategorinis.moda_proc(moda2[1], TOTAL_LINES)
     result.append([name, kiekis, truksta, kardinalumas, moda1[0], moda1[1], moda1_proc, moda2[0], moda2[1], moda2_proc])
+    ##print(result)
     return result[0]
-
 
 results = generavimas(False)
 kategorinisSarasas = ['Pavadinimas', 'kiekis', 'truksta', 'kardinalumas', 'min', 'max', 'kvantilis pirmas',
