@@ -30,7 +30,7 @@ def maximalus(data):
 
 
 ## 1 kvantilis
-def kvantilis_pirmas(data, kiekis):
+def kvantilis_pilrmas(data, kiekis):
     kvantilis = kiekis * 0.25
     return numberHelper(data[round(kvantilis)])
 
@@ -49,7 +49,7 @@ def vidurkis(data, kiekis):
         if float(t) > 0:
             sum_num = sum_num + float(t)
             avg = sum_num / kiekis
-    return round(avg, 2)
+    return avg
 
 
 ## mediana
@@ -62,9 +62,9 @@ def kvantilis_mediana(data, kiekis):
 def standartinis_nuokrypis():
     return
 
-
+##OUTTDATED
 def numberHelper(r):
     if type(r) == int:
         return r
     else:
-        return round(float(r), 2)
+        return r
